@@ -1,150 +1,142 @@
 """MSB left and LSB right"""
 //preamble_string ="briansatelliteA"
 //postamble_string="briansatelliteB"
+
+struct stored_binary_list{int binarylist[1096];int length;};
+struct stored_number_list{int numberlist[1096];int length;};
+
 int raw_binary_list[1096]; 
 int raw_byte[137]; 
 
-preamble_binary_list     =[0]*120
-id_binary_list           =[0]*120
-time_binary_list         =[0]*80
-computer_binary_list     =[0]*80
-power_binary_list        =[0]*160
-structure_binary_list    =[0]*128
-attitude_binary_list     =[0]*80
-payload_binary_list      =[0]*160
-communication_binary_list=[0]*48
-postamble_binary_list    =[0]*120
+int preamble_binary_list     [120];
+int id_binary_list           [120];
+int time_binary_list         [80 ];
+int computer_binary_list     [80 ];
+int power_binary_list        [160];
+int structure_binary_list    [128];
+int attitude_binary_list     [80 ];
+int payload_binary_list      [160];
+int communication_binary_list[48 ];
+int postamble_binary_list    [120];
 
-preamble_integer_list     =[0]*15
-id_integer_list           =[0]*15
-time_integer_list         =[0]*10
-computer_integer_list     =[0]*10
-power_integer_list        =[0]*20
-structure_integer_list    =[0]*16
-attitude_integer_list     =[0]*10
-payload_integer_list      =[0]*20
-communication_integer_list=[0]*6
-postamble_integer_list    =[0]*15
+int preamble_integer_list     [15];
+int id_integer_list           [15];
+int time_integer_list         [10];
+int computer_integer_list     [10];
+int power_integer_list        [20];
+int structure_integer_list    [16];
+int attitude_integer_list     [10];
+int payload_integer_list      [20];
+int communication_integer_list[6 ];
+int postamble_integer_list    [15];
 
-def integer_to_character(integer):
-    if(integer==0 ):return "a"
-    if(integer==1 ):return "b"
-    if(integer==2 ):return "c"
-    if(integer==3 ):return "d"
-    if(integer==4 ):return "e"
-    if(integer==5 ):return "f"
-    if(integer==6 ):return "g"
-    if(integer==7 ):return "h"
-    if(integer==8 ):return "i"
-    if(integer==9 ):return "j"
-    if(integer==10):return "k"
-    if(integer==11):return "l"
-    if(integer==12):return "m"
-    if(integer==13):return "n"
-    if(integer==14):return "o"
-    if(integer==15):return "p"
-    if(integer==16):return "q"
-    if(integer==17):return "r"
-    if(integer==18):return "s"
-    if(integer==19):return "t"
-    if(integer==20):return "u"
-    if(integer==21):return "v"
-    if(integer==22):return "w"
-    if(integer==23):return "x"
-    if(integer==24):return "y"
-    if(integer==25):return "z"
-    if(integer==26):return "0"
-    if(integer==27):return "1"
-    if(integer==28):return "2"
-    if(integer==29):return "3"
-    if(integer==30):return "4"
-    if(integer==31):return "5"
-    if(integer==32):return "6"
-    if(integer==33):return "7"
-    if(integer==34):return "8"
-    if(integer==35):return "9"
-    if(integer==36):return "."
-    if(integer==37):return "%"
-    if(integer==38):return ";"
-    if(integer==39):return "#"
-    if(integer==40):return "+"
-    if(integer==41):return "-"
-    return "!"
+char integer_to_character(integer){
+    if(integer==0 ){return "a";}
+    if(integer==1 ){return "b";}
+    if(integer==2 ){return "c";}
+    if(integer==3 ){return "d";}
+    if(integer==4 ){return "e";}
+    if(integer==5 ){return "f";}
+    if(integer==6 ){return "g";}
+    if(integer==7 ){return "h";}
+    if(integer==8 ){return "i";}
+    if(integer==9 ){return "j";}
+    if(integer==10){return "k";}
+    if(integer==11){return "l";}
+    if(integer==12){return "m";}
+    if(integer==13){return "n";}
+    if(integer==14){return "o";}
+    if(integer==15){return "p";}
+    if(integer==16){return "q";}
+    if(integer==17){return "r";}
+    if(integer==18){return "s";}
+    if(integer==19){return "t";}
+    if(integer==20){return "u";}
+    if(integer==21){return "v";}
+    if(integer==22){return "w";}
+    if(integer==23){return "x";}
+    if(integer==24){return "y";}
+    if(integer==25){return "z";}
+    if(integer==26){return "0";}
+    if(integer==27){return "1";}
+    if(integer==28){return "2";}
+    if(integer==29){return "3";}
+    if(integer==30){return "4";}
+    if(integer==31){return "5";}
+    if(integer==32){return "6";}
+    if(integer==33){return "7";}
+    if(integer==34){return "8";}
+    if(integer==35){return "9";}
+    if(integer==36){return ".";}
+    if(integer==37){return "%";}
+    if(integer==38){return ";";}
+    if(integer==39){return "#";}
+    if(integer==40){return "+";}
+    if(integer==41){return "-";}
+    return "!";
+}//integer_to_character
         
-def update_raw_binary_list(recent_binary):#void
-    for index in range(1095):
-        #0 to 1094
-        raw_binary_list[index]=raw_binary_list[index+1]
-    raw_binary_list[1095]=recent_binary#most recent bit input into raw_binary
+void update_raw_binary_list(recent_binary){
+for(int index=0;index<=1094;index++){raw_binary_list[index]=raw_binary_list[index+1];}
+raw_binary_list[1095]=recent_binary;
+}/*update_raw_binary_list*/
+
+void update_preamble_binary_list_from_raw_list(){
+for(int index=0;index<=119;index++){ preamble_binary_list[index]=raw_binary_list[index];}
+}/*update_preamble_binary_list_from_raw_list*/        
+
+void update_id_binary_list_from_raw_list(){
+for(int index=120;index<=239;index++){ preamble_binary_list[index]=raw_binary_list[index];}
+}/*update_id_binary_list_from_raw_list*/
     
-def update_preamble_binary_list_from_raw_list():#void
-    for index in range(0,120):
-        #0 to 119
-        preamble_binary_list[index]=raw_binary_list[index]
+void update_time_binary_list_from_raw_list(){
+for(int index=240;index<=319;index++){ time_binary_list[index]=raw_binary_list[index];}
+}/*update_time_binary_list_from_raw_list*/
 
-def update_id_binary_list_from_raw_list():#void
-    for index in range(120,240):
-        #120 to 239
-        id_binary_list[index]=raw_binary_list[index]
+void update_computer_binary_list_from_raw_list(){
+for(int index=320;index<=399;index++){ computer_binary_list[index]=raw_binary_list[index];}    
+}/*update_computer_binary_list_from_raw_list*/
 
-def update_time_binary_list_from_raw_list():#void
-    for index in range(240,320):
-        #240 to 319
-        time_binary_list[index]=raw_binary_list[index]
+void update_power_binary_list_from_raw_list(){
+for(int index=400;index<=559;index++){ power_binary_list[index]=raw_binary_list[index];}
+}/*update_power_binary_list_from_raw_list*/
+   
+void update_structure_binary_list_from_raw_list(){
+for(int index=560;index<=687;index++){  structure_binary_list[index]=raw_binary_list[index];}
+}/**/
 
-def update_computer_binary_list_from_raw_list():#void
-    for index in range(320,400):
-        #320 to 399
-        computer_binary_list[index]=raw_binary_list[index]
+void update_attitude_binary_list_from_raw_list(){
+for(int index=688;index<=767;index++){  attitude_binary_list[index]=raw_binary_list[index];}
+}/*update_attitude_binary_list_from_raw_list*/
 
-def update_power_binary_list_from_raw_list():#void
-    for index in range(400,560):
-        #400 to 559
-        power_binary_list[index]=raw_binary_list[index]
+void update_payload_binary_list_from_raw_list(){
+for(int index=768;index<=927;index++){  payload_binary_list[index]=raw_binary_list[index];}
+}/*update_payload_binary_list_from_raw_list*/
+    
+void update_communication_binary_list_from_raw_list(){
+for(int index=928;index<=975;index++){  communication_binary_list[index]= raw_binary_list[index];}    
+}/*update_communication_binary_list_from_raw_list*/
 
-def update_structure_binary_list_from_raw_list():#void
-    for index in range(560,688):
-        #560 to 687
-        structure_binary_list[index]=raw_binary_list[index]
+void update_postamble_binary_list_from_raw_list(){
+for(int index=976;index<=1095;index++){ postamble_binary_list[index]= raw_binary_list[index];}
+}/*update_postamble_binary_list_from_raw_list*/:#void
 
-def update_attitude_binary_list_from_raw_list():#void
-    for index in range(688,768):
-        #688 to 767
-        attitude_binary_list[index]=raw_binary_list[index]
-
-def update_payload_binary_list_from_raw_list():#void
-    for index in range(768,928):
-        #768 to 927
-        payload_binary_list[index]=raw_binary_list[index]
-
-def update_communication_binary_list_from_raw_list():#void
-    for index in range(928,976):
-        #928 to 975
-        communication_binary_list[index]= raw_binary_list[index]
-
-def update_postamble_binary_list_from_raw_list():#void
-    for index in range(976,1096):
-        #976 to 1095
-        postamble_binary_list[index]= raw_binary_list[index]
-
-def get_8_bit_values_from_list(mylist,mylistlength):
-    items=(int)(mylistlength/8)
-    start = 0
-    end = 7
-    integer_value_list=[0]*items
-    def integer_value(starting,ending):
-        result=0
-        for index in range(starting,ending+1):
-            result=result+ (mylist[index]*(2**(7-index+starting)))
-        return result
-    for value_index in range(items):
-        if value_index==0:
-            integer_value_list[value_index]=integer_value(start,end)
-        if not(value_index==0):
-            start=start+8
-            end=end+8
-            integer_value_list[value_index]=integer_value(start,end)
-    return( integer_value_list )
+struct stored_number_list get_8_bit_values_from_list(mylist,mylistlength){
+int items=(int)(mylistlength/8)
+int start = 0;
+int end = 7;
+int integer_value_list[items];
+int integer_value(starting,ending){
+int result=0;
+for(int index=starting;index<=ending;index++){ result=result+(mylist[index]*(2**(7-index+starting)));}/***************************************************/
+return result;
+}/*integer_value*/
+for(int value_index=starting;value_index<=ending;value_index++){
+if(value_index==0){integer_value_list[value_index]=integer_value(start,end);}
+if(value_index!=0){ start=start+8;end=end+8;integer_value_list[value_index]=integer_value(start,end);}/****************************************************/
+}
+return( integer_value_list );
+}/*get_8_bit_values_from_list*/
 
 def decrypt(mylist,mylistsize):
     decrypt_result="!"*mylistsize
