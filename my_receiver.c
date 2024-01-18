@@ -4,11 +4,16 @@
 //preamble_string ="briansatelliteA"
 //postamble_string="briansatelliteB"
 
-struct stored_binary_list{int binarylist[1096];int length;};
-struct stored_number_list{int numberlist[1096];int length;};
+struct binary_list{int binarylist[1096];int length;};
+struct number_list{int numberlist[137 ];int length;};
+
+void decrypt(struct number_list mylist, int start_index_raw_char, int end_index_raw_char){
+for(int index=start_index_raw_char;index<=end_index_raw_char;index++){raw_char[index]=integer_to_character(mylist.numberlist[]);}
+}/*decrypt*/
 
 int raw_binary_list[1096]; 
-int raw_byte[137]; 
+int raw_byte[137];
+char raw_char[137];
 
 int preamble_binary_list     [120];
 int id_binary_list           [120];
@@ -108,17 +113,17 @@ decrypt(get_8_bit_values_from_list(communication_binary_list,48 ),6 );
 decrypt(get_8_bit_values_from_list(postamble_binary_list    ,120),15);
 }/*get_section_messages_from_binary_lists*/
 
-void run_receiver_program(){
+int run_receiver_program(){
 result=true;/******external control for running the receiver program*********/
 return result;
 }/*run_receiver_program*/
 
-void get_rs485_ch_one_line_A(){
+int get_rs485_ch_one_line_A(){
 result=1;/***external control for retrieving bit value of channel one line A***/
 return result;
 }/*get_rs485_ch_one_line_A*/
 
-void get_rs485_ch_one_line_B(){
+int get_rs485_ch_one_line_B(){
 result=1;/***external control for retrieving bit value of channel one line B***/
 return result;
 }/*get_rs485_ch_one_line_B*/:  
