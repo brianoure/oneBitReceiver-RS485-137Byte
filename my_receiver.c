@@ -31,27 +31,13 @@ int communication_integer_list[6 ];
 int postamble_integer_list    [15];
 
 char integer_to_character(integer){
-if(integer==0 ){return "a";}if(integer==1 ){return "b";}
-if(integer==2 ){return "c";}if(integer==3 ){return "d";}
-if(integer==4 ){return "e";}if(integer==5 ){return "f";}
-if(integer==6 ){return "g";}if(integer==7 ){return "h";}
-if(integer==8 ){return "i";}if(integer==9 ){return "j";}
-if(integer==10){return "k";}if(integer==11){return "l";}
-if(integer==12){return "m";}if(integer==13){return "n";}
-if(integer==14){return "o";}if(integer==15){return "p";}
-if(integer==16){return "q";}if(integer==17){return "r";}
-if(integer==18){return "s";}if(integer==19){return "t";}
-if(integer==20){return "u";}if(integer==21){return "v";}
-if(integer==22){return "w";}if(integer==23){return "x";}
-if(integer==24){return "y";}if(integer==25){return "z";}
-if(integer==26){return "0";}if(integer==27){return "1";}
-if(integer==28){return "2";}if(integer==29){return "3";}
-if(integer==30){return "4";}if(integer==31){return "5";}
-if(integer==32){return "6";}if(integer==33){return "7";}
-if(integer==34){return "8";}if(integer==35){return "9";}
-if(integer==36){return ".";}if(integer==37){return "%";}
-if(integer==38){return ";";}if(integer==39){return "#";}
-if(integer==40){return "+";}if(integer==41){return "-";}
+if(integer==0 ){return "a";}if(integer==1 ){return "b";}if(integer==2 ){return "c";}if(integer==3 ){return "d";}if(integer==4 ){return "e";}if(integer==5 ){return "f";}
+if(integer==6 ){return "g";}if(integer==7 ){return "h";}if(integer==8 ){return "i";}if(integer==9 ){return "j";}if(integer==10){return "k";}if(integer==11){return "l";}
+if(integer==12){return "m";}if(integer==13){return "n";}if(integer==14){return "o";}if(integer==15){return "p";}if(integer==16){return "q";}if(integer==17){return "r";}
+if(integer==18){return "s";}if(integer==19){return "t";}if(integer==20){return "u";}if(integer==21){return "v";}if(integer==22){return "w";}if(integer==23){return "x";}
+if(integer==24){return "y";}if(integer==25){return "z";}if(integer==26){return "0";}if(integer==27){return "1";}if(integer==28){return "2";}if(integer==29){return "3";}
+if(integer==30){return "4";}if(integer==31){return "5";}if(integer==32){return "6";}if(integer==33){return "7";}if(integer==34){return "8";}if(integer==35){return "9";}
+if(integer==36){return ".";}if(integer==37){return "%";}if(integer==38){return ";";}if(integer==39){return "#";}if(integer==40){return "+";}if(integer==41){return "-";}
 return "!";
 }//integer_to_character
         
