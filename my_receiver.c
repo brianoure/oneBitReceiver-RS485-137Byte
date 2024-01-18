@@ -32,7 +32,7 @@ int payload_integer_list      [20];
 int communication_integer_list[6 ];
 int postamble_integer_list    [15];
 
-char integer_to_character(integer){
+char integer_to_character(int integer){
 if(integer==0 ){return "a";}if(integer==1 ){return "b";}if(integer==2 ){return "c";}if(integer==3 ){return "d";}if(integer==4 ){return "e";}if(integer==5 ){return "f";}
 if(integer==6 ){return "g";}if(integer==7 ){return "h";}if(integer==8 ){return "i";}if(integer==9 ){return "j";}if(integer==10){return "k";}if(integer==11){return "l";}
 if(integer==12){return "m";}if(integer==13){return "n";}if(integer==14){return "o";}if(integer==15){return "p";}if(integer==16){return "q";}if(integer==17){return "r";}
@@ -43,7 +43,7 @@ if(integer==36){return ".";}if(integer==37){return "%";}if(integer==38){return "
 return "!";
 }//integer_to_character
         
-void update_raw_binary_list(recent_binary){
+void update_raw_binary_list(int recent_binary){
 for(int index=0;index<=1094;index++){raw_binary_list[index]=raw_binary_list[index+1];}
 raw_binary_list[1095]=recent_binary;
 }/*update_raw_binary_list*/
@@ -59,12 +59,12 @@ void update_payload_binary_list_from_raw_list      (){for(int index=768;index<=9
 void update_communication_binary_list_from_raw_list(){for(int index=928;index<=975 ;index++){ communication_binary_list[index]= raw_binary_list[index];}}/*update_communication_binary_list_from_raw_list*/
 void update_postamble_binary_list_from_raw_list    (){for(int index=976;index<=1095;index++){ postamble_binary_list    [index]= raw_binary_list[index];}}/*update_postamble_binary_list_from_raw_list*/:#void
 
-struct stored_number_list get_8_bit_values_from_list(mylist,mylistlength){
+struct stored_number_list get_8_bit_values_from_list(struct /*brianfix**/ mylist,int mylistlength){
 int items=(int)(mylistlength/8);
 int start = 0;
 int end = 7;
 int integer_value_list[items];
-int integer_value(starting,ending){
+int integer_value(int starting,int ending){
 int result=0;
 for(int index=starting;index<=ending;index++){result=result+(mylist[index]*pow(2,(7-index+starting)));}
 return result;
@@ -76,7 +76,7 @@ if(value_index!=0){start=start+8;end=end+8;integer_value_list[value_index]=integ
 return( integer_value_list );
 }/*get_8_bit_values_from_list*/
 
-char decrypt(mylist,mylistsize){
+char decrypt(struct /*brianfix**/ mylist, intmylistsize){
 char decrypt_result[mylistsize];
 for(int index=0;index<=mylistsize;index++){decrypt_result[index]=integer_to_character(mylist[index]);}
 return decrypt_result;
