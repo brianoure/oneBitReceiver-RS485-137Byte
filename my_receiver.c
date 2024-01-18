@@ -58,7 +58,7 @@ void update_communication_binary_list_from_raw_list(){for(int index=928;index<=9
 void update_postamble_binary_list_from_raw_list    (){for(int index=976;index<=1095;index++){ postamble_binary_list    [index]= raw_binary_list[index];}}/*update_postamble_binary_list_from_raw_list*/:#void
 
 struct stored_number_list get_8_bit_values_from_list(mylist,mylistlength){
-int items=(int)(mylistlength/8)
+int items=(int)(mylistlength/8);
 int start = 0;
 int end = 7;
 int integer_value_list[items];
