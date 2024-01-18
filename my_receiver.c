@@ -4,11 +4,11 @@
 //preamble_string ="briansatelliteA"
 //postamble_string="briansatelliteB"
 
-struct binary_list{int binarylist[1096];int length;};
-struct number_list{int numberlist[137 ];int length;};
+struct binary_list{int binarylist[1096];int length;int binary_list_index   ;};
+struct number_list{int numberlist[137 ];int list_length;int character_list_index;};
 
 void decrypt(struct number_list mylist, int start_index_raw_char, int end_index_raw_char){
-for(int index=start_index_raw_char;index<=end_index_raw_char;index++){raw_char[index]=integer_to_character(mylist.numberlist[]);}
+for(int index=start_index_raw_char;index<=end_index_raw_char;index++){raw_char[index]=integer_to_character(mylist.numberlist[start_index_raw_char-index]);}
 }/*decrypt*/
 
 int raw_binary_list[1096]; 
