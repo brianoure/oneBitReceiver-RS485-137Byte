@@ -46,45 +46,16 @@ for(int index=0;index<=1094;index++){raw_binary_list[index]=raw_binary_list[inde
 raw_binary_list[1095]=recent_binary;
 }/*update_raw_binary_list*/
 
-void update_preamble_binary_list_from_raw_list(){
-for(int index=0;index<=119;index++){ preamble_binary_list[index]=raw_binary_list[index];}
-}/*update_preamble_binary_list_from_raw_list*/        
-
-void update_id_binary_list_from_raw_list(){
-for(int index=120;index<=239;index++){ preamble_binary_list[index]=raw_binary_list[index];}
-}/*update_id_binary_list_from_raw_list*/
-    
-void update_time_binary_list_from_raw_list(){
-for(int index=240;index<=319;index++){ time_binary_list[index]=raw_binary_list[index];}
-}/*update_time_binary_list_from_raw_list*/
-
-void update_computer_binary_list_from_raw_list(){
-for(int index=320;index<=399;index++){ computer_binary_list[index]=raw_binary_list[index];}    
-}/*update_computer_binary_list_from_raw_list*/
-
-void update_power_binary_list_from_raw_list(){
-for(int index=400;index<=559;index++){ power_binary_list[index]=raw_binary_list[index];}
-}/*update_power_binary_list_from_raw_list*/
-   
-void update_structure_binary_list_from_raw_list(){
-for(int index=560;index<=687;index++){  structure_binary_list[index]=raw_binary_list[index];}
-}/*update_structure_binary_list_from_raw_list*/
-
-void update_attitude_binary_list_from_raw_list(){
-for(int index=688;index<=767;index++){  attitude_binary_list[index]=raw_binary_list[index];}
-}/*update_attitude_binary_list_from_raw_list*/
-
-void update_payload_binary_list_from_raw_list(){
-for(int index=768;index<=927;index++){  payload_binary_list[index]=raw_binary_list[index];}
-}/*update_payload_binary_list_from_raw_list*/
-    
-void update_communication_binary_list_from_raw_list(){
-for(int index=928;index<=975;index++){  communication_binary_list[index]= raw_binary_list[index];}    
-}/*update_communication_binary_list_from_raw_list*/
-
-void update_postamble_binary_list_from_raw_list(){
-for(int index=976;index<=1095;index++){ postamble_binary_list[index]= raw_binary_list[index];}
-}/*update_postamble_binary_list_from_raw_list*/:#void
+void update_preamble_binary_list_from_raw_list     (){for(int index=0  ;index<=119 ;index++){ preamble_binary_list     [index]= raw_binary_list[index];}}/*update_preamble_binary_list_from_raw_list*/        
+void update_id_binary_list_from_raw_list           (){for(int index=120;index<=239 ;index++){ preamble_binary_list     [index]= raw_binary_list[index];}}/*update_id_binary_list_from_raw_list*/  
+void update_time_binary_list_from_raw_list         (){for(int index=240;index<=319 ;index++){ time_binary_list         [index]= raw_binary_list[index];}}/*update_time_binary_list_from_raw_list*/
+void update_computer_binary_list_from_raw_list     (){for(int index=320;index<=399 ;index++){ computer_binary_list     [index]= raw_binary_list[index];}}/*update_computer_binary_list_from_raw_list*/
+void update_power_binary_list_from_raw_list        (){for(int index=400;index<=559 ;index++){ power_binary_list        [index]= raw_binary_list[index];}}/*update_power_binary_list_from_raw_list*/
+void update_structure_binary_list_from_raw_list    (){for(int index=560;index<=687 ;index++){ structure_binary_list    [index]= raw_binary_list[index];}}/*update_structure_binary_list_from_raw_list*/
+void update_attitude_binary_list_from_raw_list     (){for(int index=688;index<=767 ;index++){ attitude_binary_list     [index]= raw_binary_list[index];}}/*update_attitude_binary_list_from_raw_list*/
+void update_payload_binary_list_from_raw_list      (){for(int index=768;index<=927 ;index++){ payload_binary_list      [index]= raw_binary_list[index];}}/*update_payload_binary_list_from_raw_list*/    
+void update_communication_binary_list_from_raw_list(){for(int index=928;index<=975 ;index++){ communication_binary_list[index]= raw_binary_list[index];}}/*update_communication_binary_list_from_raw_list*/
+void update_postamble_binary_list_from_raw_list    (){for(int index=976;index<=1095;index++){ postamble_binary_list    [index]= raw_binary_list[index];}}/*update_postamble_binary_list_from_raw_list*/:#void
 
 struct stored_number_list get_8_bit_values_from_list(mylist,mylistlength){
 int items=(int)(mylistlength/8)
