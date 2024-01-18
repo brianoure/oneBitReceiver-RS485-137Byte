@@ -1,3 +1,5 @@
+#include <math.h>
+
 """MSB left and LSB right"""
 //preamble_string ="briansatelliteA"
 //postamble_string="briansatelliteB"
@@ -64,12 +66,12 @@ int end = 7;
 int integer_value_list[items];
 int integer_value(starting,ending){
 int result=0;
-for(int index=starting;index<=ending;index++){ result=result+(mylist[index]*(2**(7-index+starting)));}/***************************************************/
+for(int index=starting;index<=ending;index++){result=result+(mylist[index]*pow(2,(7-index+starting)));}/***************************************************/
 return result;
 }/*integer_value*/
 for(int value_index=starting;value_index<=ending;value_index++){
 if(value_index==0){integer_value_list[value_index]=integer_value(start,end);}
-if(value_index!=0){ start=start+8;end=end+8;integer_value_list[value_index]=integer_value(start,end);}/****************************************************/
+if(value_index!=0){start=start+8;end=end+8;integer_value_list[value_index]=integer_value(start,end);}/****************************************************/
 }
 return( integer_value_list );
 }/*get_8_bit_values_from_list*/
