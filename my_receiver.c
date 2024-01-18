@@ -82,7 +82,7 @@ for(int index=400;index<=559;index++){ power_binary_list[index]=raw_binary_list[
    
 void update_structure_binary_list_from_raw_list(){
 for(int index=560;index<=687;index++){  structure_binary_list[index]=raw_binary_list[index];}
-}/**/
+}/*update_structure_binary_list_from_raw_list*/
 
 void update_attitude_binary_list_from_raw_list(){
 for(int index=688;index<=767;index++){  attitude_binary_list[index]=raw_binary_list[index];}
