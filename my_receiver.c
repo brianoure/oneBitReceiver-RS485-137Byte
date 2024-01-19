@@ -4,26 +4,27 @@
 //preamble_string ="briansatelliteA"
 //postamble_string="briansatelliteB"
 
-struct binary_list{int binarylist[1096];int start_index;int end_index;};
-struct number_list{int numberlist[137 ];int start_index;int end_index;};
-
+struct binary_list{int binarylist[1096];int startindex;int endindex;};
+struct number_list{int numberlist[137 ];int startindex;int endindex;};
+////////////////////////////////////////////////////////*************************************//////////
 struct number_list get_8_bit_values_from_list(struct binary_list mybinarylist){
 int integer_value (int starting,int ending){
-int result=0;
+int result = 0;
 for(int index=starting;index<=ending;index++){result=result+((mybinarylist.binarylist[index])*pow(2,(7-index+starting)));}
 return result;
 }/*integer_value*/
-int items = (int)((  mybinarylist.end_index-mybinarylist.start_index+1  )/8);
+int items = (int)((  mybinarylist.endindex-mybinarylist.startindex+1  )/8);
 int start = 0;
 int end   = 7;
-struct number_list integer_value_list;
-for(int value_index=starting;value_index<=ending;value_index++){
+struct number_list integer_value_list; 
+for(int i=0;i<=137;i++){integer_value_list.numberlist[i]=0;}
+for(int value_index=mybinarylist.startindex; value_index<=mybinarylist.endindex; value_index++){
 if(value_index==0){integer_value_list[value_index]=integer_value(start,end);}
-if(value_index!=0){start=start+8;end=end+8;integer_value_list[value_index]=integer_value(start,end);}
+        if(value_index!=0){start=start+8;end=end+8;integer_value_list[value_index]=integer_value(start,end);}
 }/*for*/
-return( integer_value_list );
+return integer_value_list;
 }/*get_8_bit_values_from_list*/
-
+////////////////////////////////////////////////////////*************************************//////////
 int  raw_binary_list[1096]; 
 int  raw_byte       [137 ];
 char raw_char       [137 ];
