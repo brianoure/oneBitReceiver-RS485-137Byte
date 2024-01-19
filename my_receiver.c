@@ -4,29 +4,29 @@
 //preamble_string ="briansatelliteA"
 //postamble_string="briansatelliteB"
 
-struct binary_list{int binarylist[1096];int length;int binary_list_index   ;};
-struct number_list{int numberlist[137 ];int raw_char_start_index;int raw_char_end_index;};
+struct binary_list{int binarylist[1096];int start_index;int end_index;};
+struct number_list{int numberlist[137 ];int start_index;int end_index;};
 
 struct number_list get_8_bit_values_from_list(struct binary_list mybinarylist){
-int items = (int)((mybinarylist.length)/8);
-int start = 0;
-int end   = 7;
-int integer_value_list [items];
 int integer_value (int starting,int ending){
 int result=0;
-for(int index=starting;index<=ending;index++){result=result+(mybinarylist.binarylist[index]*pow(2,(7-index+starting)));}
+for(int index=starting;index<=ending;index++){result=result+((mybinarylist.binarylist[index])*pow(2,(7-index+starting)));}
 return result;
 }/*integer_value*/
+int items = (int)((  mybinarylist.end_index-mybinarylist.start_index+1  )/8);
+int start = 0;
+int end   = 7;
+struct number_list integer_value_list;
 for(int value_index=starting;value_index<=ending;value_index++){
 if(value_index==0){integer_value_list[value_index]=integer_value(start,end);}
 if(value_index!=0){start=start+8;end=end+8;integer_value_list[value_index]=integer_value(start,end);}
-}
+}/*for*/
 return( integer_value_list );
 }/*get_8_bit_values_from_list*/
 
-int raw_binary_list[1096]; 
-int raw_byte[137];
-char raw_char[137];
+int  raw_binary_list[1096]; 
+int  raw_byte       [137 ];
+char raw_char       [137 ];
 
 int preamble_binary_list     [120];
 int id_binary_list           [120];
