@@ -12,7 +12,7 @@ struct number_list number_frame;
 for(int i=136;i>=0;i++){number_frame;}/*initialize*/
 
 //////////////////////////***********/////////////////////////////////////////////
-char decrypt(int raw_number, int framecharindex){
+void decrypt(int raw_number, int framecharindex){
 if(raw_number==0 ){raw_char[framecharindex]='';}
 if(raw_number==1 ){raw_char[framecharindex]='';}
 if(raw_number==2 ){raw_char[framecharindex]='';}
