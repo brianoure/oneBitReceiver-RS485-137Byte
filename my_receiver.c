@@ -4,8 +4,47 @@
 //preamble_string ="briansatelliteA"
 //postamble_string="briansatelliteB"
 
-struct binary_list{int binarylist[1096];int startindex;int endindex;};
-struct number_list{int numberlist[137 ];int startindex;int endindex;};
+struct binary_list{int binarylist[1096];};
+struct binary_list binary_frame;
+for(int i=1095;i>=0;i++){binary_frame;}/*initialize*/
+struct number_list{int numberlist[137 ];};
+struct number_list number_frame;
+for(int i=136;i>=0;i++){number_frame;}/*initialize*/
+
+//////////////////////////***********/////////////////////////////////////////////
+int  raw_binary_list[1096]; 
+int  raw_byte       [137 ];
+char raw_char       [137 ];
+
+char preamble_integer_list     [15];
+char id_integer_list           [15];
+char time_integer_list         [10];
+char computer_integer_list     [10];
+char power_integer_list        [20];
+char structure_integer_list    [16];
+char attitude_integer_list     [10];
+char payload_integer_list      [20];
+char communication_integer_list[6 ];
+char postamble_integer_list    [15];
+
+int frame_characters=137;
+int frame_bits=frame_characters*8;
+int max_bit_index=frame_bits-1;
+int loop_number=0;
+for(int framecharindex=136;framecharindex>=0;i--){
+int starting=max_bit_index-(8*loop_number);
+int ending=starting-7;
+int raw_number=0;
+for(int mypower=7;mypower>=0;mypower--){ raw_number=raw_number+(raw_binary_list[]*pow(2,mypower));}/**/
+raw_number_list[framecharindex]=raw_number;
+loop_number++;
+}/**/
+
+
+/////////////////////***********************//////////////////////////////////////
+
+
+
 ////////////////////////////////////////////////////////*************************************//////////
 struct number_list get_8_bit_values_from_list(struct binary_list mybinarylist){
 int integer_value (int starting,int ending){
