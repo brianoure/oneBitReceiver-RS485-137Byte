@@ -35,7 +35,8 @@ for(int framecharindex=136;framecharindex>=0;i--){
 int starting=max_bit_index-(8*loop_number);
 int ending=starting-7;
 int raw_number=0;
-for(int mypower=7;mypower>=0;mypower--){ raw_number=raw_number+(raw_binary_list[]*pow(2,mypower));}/**/
+int target_raw_binary_index=starting;
+for(int mypower=7;mypower>=0;mypower--){ raw_number=raw_number+(raw_binary_list[target_raw_binary_index]*pow(2,mypower));target_raw_binary_index--; }/**/
 raw_number_list[framecharindex]=raw_number;
 loop_number++;
 }/**/
