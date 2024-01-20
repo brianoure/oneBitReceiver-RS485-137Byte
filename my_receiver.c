@@ -12,32 +12,7 @@ struct number_list number_frame;
 for(int i=136;i>=0;i++){number_frame;}/*initialize*/
 
 //////////////////////////***********/////////////////////////////////////////////
-int  raw_binary_list[1096]; 
-int  raw_byte       [137 ];
-char raw_char       [137 ];
-
-char preamble_integer_list     [15];
-char id_integer_list           [15];
-char time_integer_list         [10];
-char computer_integer_list     [10];
-char power_integer_list        [20];
-char structure_integer_list    [16];
-char attitude_integer_list     [10];
-char payload_integer_list      [20];
-char communication_integer_list[6 ];
-char postamble_integer_list    [15];
-
-int frame_characters=137;
-int frame_bits=frame_characters*8;
-int max_bit_index=frame_bits-1;
-int loop_number=0;
-for(int framecharindex=136;framecharindex>=0;i--){
-int starting=max_bit_index-(8*loop_number);
-int ending=starting-7;
-int raw_number=0;
-int target_raw_binary_index=starting;
-for(int mypower=7;mypower>=0;mypower--){ raw_number=raw_number+(raw_binary_list[target_raw_binary_index]*pow(2,mypower));target_raw_binary_index--; }/**/
-raw_number_list[framecharindex]=raw_number;
+char decrypt(int raw_number, int framecharindex){
 if(raw_number==0 ){raw_char[framecharindex]='';}
 if(raw_number==1 ){raw_char[framecharindex]='';}
 if(raw_number==2 ){raw_char[framecharindex]='';}
@@ -78,6 +53,35 @@ if(raw_number==36){raw_char[framecharindex]='';}
 if(raw_number==37){raw_char[framecharindex]='';}
 if(raw_number==38){raw_char[framecharindex]='';}
 if(raw_number==39){raw_char[framecharindex]='';}
+}
+
+int  raw_binary_list[1096]; 
+int  raw_byte       [137 ];
+char raw_char       [137 ];
+
+char preamble_integer_list     [15];
+char id_integer_list           [15];
+char time_integer_list         [10];
+char computer_integer_list     [10];
+char power_integer_list        [20];
+char structure_integer_list    [16];
+char attitude_integer_list     [10];
+char payload_integer_list      [20];
+char communication_integer_list[6 ];
+char postamble_integer_list    [15];
+
+int frame_characters=137;
+int frame_bits=frame_characters*8;
+int max_bit_index=frame_bits-1;
+int loop_number=0;
+for(int framecharindex=136;framecharindex>=0;i--){
+int starting=max_bit_index-(8*loop_number);
+int ending=starting-7;
+int raw_number=0;
+int target_raw_binary_index=starting;
+for(int mypower=7;mypower>=0;mypower--){ raw_number=raw_number+(raw_binary_list[target_raw_binary_index]*pow(2,mypower));target_raw_binary_index--; }/**/
+raw_number_list[framecharindex]=raw_number;
+decrypt(raw_number,framecharindex);
 loop_number++;
 }/**/
 
