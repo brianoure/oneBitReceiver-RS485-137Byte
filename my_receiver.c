@@ -38,6 +38,46 @@ int raw_number=0;
 int target_raw_binary_index=starting;
 for(int mypower=7;mypower>=0;mypower--){ raw_number=raw_number+(raw_binary_list[target_raw_binary_index]*pow(2,mypower));target_raw_binary_index--; }/**/
 raw_number_list[framecharindex]=raw_number;
+if(raw_number==0 ){raw_char[framecharindex]='';}
+if(raw_number==1 ){raw_char[framecharindex]='';}
+if(raw_number==2 ){raw_char[framecharindex]='';}
+if(raw_number==3 ){raw_char[framecharindex]='';}
+if(raw_number==4 ){raw_char[framecharindex]='';}
+if(raw_number==5 ){raw_char[framecharindex]='';}
+if(raw_number==6 ){raw_char[framecharindex]='';}
+if(raw_number==7 ){raw_char[framecharindex]='';}
+if(raw_number==8 ){raw_char[framecharindex]='';}
+if(raw_number==9 ){raw_char[framecharindex]='';}
+if(raw_number==10){raw_char[framecharindex]='';}
+if(raw_number==11){raw_char[framecharindex]='';}
+if(raw_number==12){raw_char[framecharindex]='';}
+if(raw_number==13){raw_char[framecharindex]='';}
+if(raw_number==14){raw_char[framecharindex]='';}
+if(raw_number==15){raw_char[framecharindex]='';}
+if(raw_number==16){raw_char[framecharindex]='';}
+if(raw_number==17){raw_char[framecharindex]='';}
+if(raw_number==18){raw_char[framecharindex]='';}
+if(raw_number==19){raw_char[framecharindex]='';}
+if(raw_number==20){raw_char[framecharindex]='';}
+if(raw_number==21){raw_char[framecharindex]='';}
+if(raw_number==22){raw_char[framecharindex]='';}
+if(raw_number==23){raw_char[framecharindex]='';}
+if(raw_number==24){raw_char[framecharindex]='';}
+if(raw_number==25){raw_char[framecharindex]='';}
+if(raw_number==26){raw_char[framecharindex]='';}
+if(raw_number==27){raw_char[framecharindex]='';}
+if(raw_number==28){raw_char[framecharindex]='';}
+if(raw_number==29){raw_char[framecharindex]='';}
+if(raw_number==30){raw_char[framecharindex]='';}
+if(raw_number==31){raw_char[framecharindex]='';}
+if(raw_number==32){raw_char[framecharindex]='';}
+if(raw_number==33){raw_char[framecharindex]='';}
+if(raw_number==34){raw_char[framecharindex]='';}
+if(raw_number==35){raw_char[framecharindex]='';}
+if(raw_number==36){raw_char[framecharindex]='';}
+if(raw_number==37){raw_char[framecharindex]='';}
+if(raw_number==38){raw_char[framecharindex]='';}
+if(raw_number==39){raw_char[framecharindex]='';}
 loop_number++;
 }/**/
 
