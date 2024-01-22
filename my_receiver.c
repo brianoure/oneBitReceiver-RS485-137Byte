@@ -44,47 +44,47 @@ INSERT CODE HERE; FOR READING BIT VALUE OF SINGLE LINE (B).
 return result;
 }/*get_rs485_ch_one_line_B*/:  
 
-void number_to_char(int raw_number, int framecharindex){/*decrypt the raw numbers into actual characters*/
-if(raw_number==0 ){raw_char[framecharindex]='a';}
-if(raw_number==1 ){raw_char[framecharindex]='b';}
-if(raw_number==2 ){raw_char[framecharindex]='c';}
-if(raw_number==3 ){raw_char[framecharindex]='d';}
-if(raw_number==4 ){raw_char[framecharindex]='e';}
-if(raw_number==5 ){raw_char[framecharindex]='f';}
-if(raw_number==6 ){raw_char[framecharindex]='g';}
-if(raw_number==7 ){raw_char[framecharindex]='h';}
-if(raw_number==8 ){raw_char[framecharindex]='i';}
-if(raw_number==9 ){raw_char[framecharindex]='j';}
-if(raw_number==10){raw_char[framecharindex]='k';}
-if(raw_number==11){raw_char[framecharindex]='l';}
-if(raw_number==12){raw_char[framecharindex]='m';}
-if(raw_number==13){raw_char[framecharindex]='n';}
-if(raw_number==14){raw_char[framecharindex]='o';}
-if(raw_number==15){raw_char[framecharindex]='p';}
-if(raw_number==16){raw_char[framecharindex]='q';}
-if(raw_number==17){raw_char[framecharindex]='r';}
-if(raw_number==18){raw_char[framecharindex]='s';}
-if(raw_number==19){raw_char[framecharindex]='t';}
-if(raw_number==20){raw_char[framecharindex]='u';}
-if(raw_number==21){raw_char[framecharindex]='v';}
-if(raw_number==22){raw_char[framecharindex]='w';}
-if(raw_number==23){raw_char[framecharindex]='x';}
-if(raw_number==24){raw_char[framecharindex]='y';}
-if(raw_number==25){raw_char[framecharindex]='z';}
-if(raw_number==26){raw_char[framecharindex]='0';}
-if(raw_number==27){raw_char[framecharindex]='1';}
-if(raw_number==28){raw_char[framecharindex]='2';}
-if(raw_number==29){raw_char[framecharindex]='3';}
-if(raw_number==30){raw_char[framecharindex]='4';}
-if(raw_number==31){raw_char[framecharindex]='5';}
-if(raw_number==32){raw_char[framecharindex]='6';}
-if(raw_number==33){raw_char[framecharindex]='7';}
-if(raw_number==34){raw_char[framecharindex]='8';}
-if(raw_number==35){raw_char[framecharindex]='9';}
-if(raw_number==36){raw_char[framecharindex]='%';}
-if(raw_number==37){raw_char[framecharindex]='+';}
-if(raw_number==38){raw_char[framecharindex]='-';}
-if(raw_number==39){raw_char[framecharindex]='#';}
+char number_to_char(int raw_number, int framecharindex){/*decrypt the raw numbers into actual characters*/
+if(raw_number==0 ){return 'a';}
+if(raw_number==1 ){return 'b';}
+if(raw_number==2 ){return 'c';}
+if(raw_number==3 ){return 'd';}
+if(raw_number==4 ){return 'e';}
+if(raw_number==5 ){return 'f';}
+if(raw_number==6 ){return 'g';}
+if(raw_number==7 ){return 'h';}
+if(raw_number==8 ){return 'i';}
+if(raw_number==9 ){return 'j';}
+if(raw_number==10){return 'k';}
+if(raw_number==11){return 'l';}
+if(raw_number==12){return 'm';}
+if(raw_number==13){return 'n';}
+if(raw_number==14){return 'o';}
+if(raw_number==15){return 'p';}
+if(raw_number==16){return 'q';}
+if(raw_number==17){return 'r';}
+if(raw_number==18){return 's';}
+if(raw_number==19){return 't';}
+if(raw_number==20){return 'u';}
+if(raw_number==21){return 'v';}
+if(raw_number==22){return 'w';}
+if(raw_number==23){return 'x';}
+if(raw_number==24){return 'y';}
+if(raw_number==25){return 'z';}
+if(raw_number==26){return '0';}
+if(raw_number==27){return '1';}
+if(raw_number==28){return '2';}
+if(raw_number==29){return '3';}
+if(raw_number==30){return '4';}
+if(raw_number==31){return '5';}
+if(raw_number==32){return '6';}
+if(raw_number==33){return '7';}
+if(raw_number==34){return '8';}
+if(raw_number==35){return '9';}
+if(raw_number==36){return '%';}
+if(raw_number==37){return '+';}
+if(raw_number==38){return '-';}
+if(raw_number==39){return '#';}
 }/*decrypt*/
 
 void update_raw_binary_list(int recent_binary){
@@ -104,18 +104,31 @@ int raw_number=0;
 int target_raw_binary_index=starting;
 for(int mypower=7;mypower>=0;mypower--){ raw_number=raw_number+(raw_binary_list[target_raw_binary_index]*pow(2,mypower));target_raw_binary_index--; }/*for*/
 raw_number_list[framecharindex]=raw_number;
-number_to_char(raw_number,framecharindex);
+raw_char       [framecharindex]=number_to_char(raw_number,framecharindex);
 loop_number++;
 }/*for*/
 }/*update_raw_byte_update_raw_char*/
+
+void update_section_messages(){/*NB: char order reversed for each section*/
+for(int raw_char_index=136 ;int raw_char_index>=122 ;int raw_char_index--){preamble     [136-raw_char_index] = raw_char[raw_char_index];}
+for(int raw_char_index=121 ;int raw_char_index>=107 ;int raw_char_index--){id           [121-raw_char_index] = raw_char[raw_char_index];}
+for(int raw_char_index=106 ;int raw_char_index>=97  ;int raw_char_index--){time         [106-raw_char_index] = raw_char[raw_char_index];}
+for(int raw_char_index=96  ;int raw_char_index>=87  ;int raw_char_index--){computer     [96 -raw_char_index] = raw_char[raw_char_index];}
+for(int raw_char_index=86  ;int raw_char_index>=67  ;int raw_char_index--){power        [86 -raw_char_index] = raw_char[raw_char_index];}
+for(int raw_char_index=66  ;int raw_char_index>=51  ;int raw_char_index--){structure    [66 -raw_char_index] = raw_char[raw_char_index];}
+for(int raw_char_index=50  ;int raw_char_index>=41  ;int raw_char_index--){attitude     [50 -raw_char_index] = raw_char[raw_char_index];}
+for(int raw_char_index=40  ;int raw_char_index>=21  ;int raw_char_index--){payload      [40 -raw_char_index] = raw_char[raw_char_index];}
+for(int raw_char_index=20  ;int raw_char_index>=15  ;int raw_char_index--){communication[20 -raw_char_index] = raw_char[raw_char_index];}
+for(int raw_char_index=14  ;int raw_char_index>=0   ;int raw_char_index--){postamble    [14 -raw_char_index] = raw_char[raw_char_index];}
+}/*update_section_messages*/
 
 int main(){
 while(run_receiver_program()){
 int a=get_rs485_ch_one_line_A();
 int b=get_rs485_ch_one_line_B();
 if(a==0 && b==0){while(get_rs485_ch_one_line_A()==0 && get_rs485_ch_one_line_B()==0){}}
-if(a==0 && b==1){update_raw_binary_list(0);update_raw_byte_update_raw_char();while(get_rs485_ch_one_line_A()==0 && get_rs485_ch_one_line_B()==1){}}     
-if(a==1 && b==0){update_raw_binary_list(1);update_raw_byte_update_raw_char();while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()==0){}}
+if(a==0 && b==1){update_raw_binary_list(0);update_raw_byte_update_raw_char();update_section_messages();while(get_rs485_ch_one_line_A()==0 && get_rs485_ch_one_line_B()==1){}}     
+if(a==1 && b==0){update_raw_binary_list(1);update_raw_byte_update_raw_char();update_section_messages();while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()==0){}}
 if(a==1 && b==1){while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()==1){}}
 }/*while*/
 return 0;
