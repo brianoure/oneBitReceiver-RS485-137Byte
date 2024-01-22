@@ -105,7 +105,7 @@ raw_number_list[framecharindex]=raw_number;
 decrypt(raw_number,framecharindex);
 loop_number++;
 }/*for*/
-}/**/
+}/*update_raw_byte_update_raw_char*/
 
 int main(){
 while(run_receiver_program()){
