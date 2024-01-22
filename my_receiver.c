@@ -4,6 +4,21 @@
 //preamble_string ="briansatelliteA"
 //postamble_string="briansatelliteB"
 
+int  raw_binary_list[1096]; 
+int  raw_byte       [137 ];
+char raw_char       [137 ];
+
+char preamble     [15];
+char id           [15];
+char time         [10];
+char computer     [10];
+char power        [20];
+char structure    [16];
+char attitude     [10];
+char payload      [20];
+char communication[6 ];
+char postamble    [15];
+
 int run_receiver_program(){
 result=true;/******external control for running the receiver program*********/
 return result;
@@ -62,28 +77,12 @@ if(raw_number==38){raw_char[framecharindex]='-';}
 if(raw_number==39){raw_char[framecharindex]='#';}
 }
 
-int  raw_binary_list[1096]; 
-int  raw_byte       [137 ];
-char raw_char       [137 ];
-
 void update_raw_binary_list(int recent_binary){
 for(int index=1095;index>=1;index--){raw_binary_list[index]=raw_binary_list[index-1];}
 raw_binary_list[0]=recent_binary;
 }/*update_raw_binary_list*/
 
-char preamble     [15];
-char id           [15];
-char time         [10];
-char computer     [10];
-char power        [20];
-char structure    [16];
-char attitude     [10];
-char payload      [20];
-char communication[6 ];
-char postamble    [15];
-
-int main(){
-while(run_receiver_program()){
+void update_raw_byte_update_raw_char(){
 int frame_characters=137;
 int frame_bits      =frame_characters*8;
 int max_bit_index   =frame_bits-1;
@@ -93,18 +92,21 @@ int starting=max_bit_index-(8*loop_number);
 int ending=starting-7;
 int raw_number=0;
 int target_raw_binary_index=starting;
-for(int mypower=7;mypower>=0;mypower--){ raw_number=raw_number+(raw_binary_list[target_raw_binary_index]*pow(2,mypower));target_raw_binary_index--; }/**/
+for(int mypower=7;mypower>=0;mypower--){ raw_number=raw_number+(raw_binary_list[target_raw_binary_index]*pow(2,mypower));target_raw_binary_index--; }/*for*/
 raw_number_list[framecharindex]=raw_number;
 decrypt(raw_number,framecharindex);
 loop_number++;
+}/*for*/
 }/**/
-/*****/
+
+int main(){
+while(run_receiver_program()){
 int a=get_rs485_ch_one_line_A();
 int b=get_rs485_ch_one_line_B();
 if(a==0 and b==0){while(get_rs485_ch_one_line_A()==0 && get_rs485_ch_one_line_B()==0){}}
-if(a==0 and b==1){update_raw_binary_list(0);while(get_rs485_ch_one_line_A()==0 && get_rs485_ch_one_line_B()==1){}}     
-if(a==1 and b==0){update_raw_binary_list(1);while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()==0){}}
+if(a==0 and b==1){update_raw_binary_list(0);update_raw_byte_update_raw_char();while(get_rs485_ch_one_line_A()==0 && get_rs485_ch_one_line_B()==1){}}     
+if(a==1 and b==0){update_raw_binary_list(1);update_raw_byte_update_raw_char();while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()==0){}}
 if(a==1 and b==1){while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()==1){}}
 }/*while*/
 return 0;
-}
+}/*main*/
