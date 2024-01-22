@@ -1,8 +1,8 @@
 #include <math.h>
 
-"""MSB left and LSB right"""
-//preamble_string ="briansatelliteA"
-//postamble_string="briansatelliteB"
+/**
+How I wil be reading  the  value of an array containing binary values:MSB to the left(highest index) and LSB to the right(lowest index)
+**/
 
 int  raw_binary_list[1096]; 
 int  raw_byte       [137 ];
@@ -20,21 +20,29 @@ char communication[6 ];
 char postamble    [15];
 
 int run_receiver_program(){
-result=true;/******external control for running the receiver program*********/
+result=true;/*external control for running the receiver program*/
+/***
+INSERT CODE HERE; IF THERE ARE CONDITIONS FOR RUNNING THE PROGRAM.
+If nothing is changed here, then the program should run indefinitely
+***/
 return result;
 }/*run_receiver_program*/
 
 int get_rs485_ch_one_line_A(){
 result=1;/***external control for retrieving bit value of channel one line A***/
+/***
+INSERT CODE HERE; FOR READING BIT VALUE OF SINGLE LINE (A).
+***/
 return result;
 }/*get_rs485_ch_one_line_A*/
 
 int get_rs485_ch_one_line_B(){
 result=1;/***external control for retrieving bit value of channel one line B***/
+INSERT CODE HERE; FOR READING BIT VALUE OF SINGLE LINE (B).
 return result;
 }/*get_rs485_ch_one_line_B*/:  
 
-void decrypt(int raw_number, int framecharindex){
+void decrypt(int raw_number, int framecharindex){/*decrypt the raw numbers into actual characters*/
 if(raw_number==0 ){raw_char[framecharindex]='a';}
 if(raw_number==1 ){raw_char[framecharindex]='b';}
 if(raw_number==2 ){raw_char[framecharindex]='c';}
@@ -75,7 +83,7 @@ if(raw_number==36){raw_char[framecharindex]='%';}
 if(raw_number==37){raw_char[framecharindex]='+';}
 if(raw_number==38){raw_char[framecharindex]='-';}
 if(raw_number==39){raw_char[framecharindex]='#';}
-}
+}/*decrypt*/
 
 void update_raw_binary_list(int recent_binary){
 for(int index=1095;index>=1;index--){raw_binary_list[index]=raw_binary_list[index-1];}
