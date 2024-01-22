@@ -38,11 +38,13 @@ return result;
 
 int get_rs485_ch_one_line_B(){
 result=1;/***external control for retrieving bit value of channel one line B***/
+/*
 INSERT CODE HERE; FOR READING BIT VALUE OF SINGLE LINE (B).
+*/
 return result;
 }/*get_rs485_ch_one_line_B*/:  
 
-void decrypt(int raw_number, int framecharindex){/*decrypt the raw numbers into actual characters*/
+void number_to_char(int raw_number, int framecharindex){/*decrypt the raw numbers into actual characters*/
 if(raw_number==0 ){raw_char[framecharindex]='a';}
 if(raw_number==1 ){raw_char[framecharindex]='b';}
 if(raw_number==2 ){raw_char[framecharindex]='c';}
@@ -102,7 +104,7 @@ int raw_number=0;
 int target_raw_binary_index=starting;
 for(int mypower=7;mypower>=0;mypower--){ raw_number=raw_number+(raw_binary_list[target_raw_binary_index]*pow(2,mypower));target_raw_binary_index--; }/*for*/
 raw_number_list[framecharindex]=raw_number;
-decrypt(raw_number,framecharindex);
+number_to_char(raw_number,framecharindex);
 loop_number++;
 }/*for*/
 }/*update_raw_byte_update_raw_char*/
@@ -111,10 +113,10 @@ int main(){
 while(run_receiver_program()){
 int a=get_rs485_ch_one_line_A();
 int b=get_rs485_ch_one_line_B();
-if(a==0 and b==0){while(get_rs485_ch_one_line_A()==0 && get_rs485_ch_one_line_B()==0){}}
-if(a==0 and b==1){update_raw_binary_list(0);update_raw_byte_update_raw_char();while(get_rs485_ch_one_line_A()==0 && get_rs485_ch_one_line_B()==1){}}     
-if(a==1 and b==0){update_raw_binary_list(1);update_raw_byte_update_raw_char();while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()==0){}}
-if(a==1 and b==1){while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()==1){}}
+if(a==0 && b==0){while(get_rs485_ch_one_line_A()==0 && get_rs485_ch_one_line_B()==0){}}
+if(a==0 && b==1){update_raw_binary_list(0);update_raw_byte_update_raw_char();while(get_rs485_ch_one_line_A()==0 && get_rs485_ch_one_line_B()==1){}}     
+if(a==1 && b==0){update_raw_binary_list(1);update_raw_byte_update_raw_char();while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()==0){}}
+if(a==1 && b==1){while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()==1){}}
 }/*while*/
 return 0;
 }/*main*/
