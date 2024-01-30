@@ -61,17 +61,23 @@ def integer_to_character(integer):
     if(integer==41):return "-"
     return "!"
 
-def get_numbers_from_raw_binary():
-    bit_position=1095
+def get_numbers_and_characters_from_raw_binary():
+    bit_position=0
     for charindex in range(136,-1,-1):
         #136 to 0
         character_number=0
         for exponent in range(7,-1,-1):
             #7 to 0
             character_number=character_number+((raw_bit[bit_position])*(2**exponent))
-            bit_position=bit_position-1
+            bit_position=bit_position+1
+        character_number=0
         raw_char[charindex] = integer_to_character(character_number)
-        bit_position=bit_position-1
+        bit_position=bit_position+1
+
+def add_new_bit_at_end_remove_old_bit_at_start(new_bit):
+    for index in range(0,1095):
+        raw_bit[index]=raw_bit[index+1]
+    raw_bit[1095]=new_bit
 
 def run_receiver_program():
     result=True#external control for running the receiver program
@@ -84,20 +90,22 @@ def get_rs485_ch_one_line_A():
 def get_rs485_ch_one_line_B():
     result=1#external control for retrieving bit value of channel one line B
     return result
-
+    
 def receiver_main():
     while run_receiver_program():
         a=get_rs485_ch_one_line_A()
         b=get_rs485_ch_one_line_B()
-        if(a==0 and b==0):
+        if(a==0 and b==0):           
             while(get_rs485_ch_one_line_A()==0 and get_rs485_ch_one_line_B()==0):pass
         if(a==0 and b==1):
-            update_raw_binary_list(0)
-            update_binary_frame_sections()
+            add_new_bit_at_end_remove_old_bit_at_start(0)
+            get_numbers_and_characters_from_raw_binary()
             while(get_rs485_ch_one_line_A()==0 and get_rs485_ch_one_line_B()==1):pass
         if(a==1 and b==0):
-            update_raw_binary_list(1)
-            update_binary_frame_sections()
+            add_new_bit_at_end_remove_old_bit_at_start(1)
+            get_numbers_and_characters_from_raw_binary()
             while(get_rs485_ch_one_line_A()==1 and get_rs485_ch_one_line_B()==0):pass
         if(a==1 and b==1):
             while(get_rs485_ch_one_line_A()==1 and get_rs485_ch_one_line_B()==1):pass
+
+receiver_main()#ACTION!
