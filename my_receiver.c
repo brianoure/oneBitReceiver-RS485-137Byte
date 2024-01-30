@@ -1,6 +1,6 @@
 #include <math.h>
 int  raw_binary_list[1096]; 
-int  raw_number       [137 ];
+int  raw_number     [137 ];
 char raw_char       [137 ];
 
 int run_receiver_program(){
