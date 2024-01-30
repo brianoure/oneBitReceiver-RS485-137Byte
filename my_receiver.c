@@ -90,8 +90,8 @@ while(run_receiver_program()){
 int a=get_rs485_ch_one_line_A();
 int b=get_rs485_ch_one_line_B();
 if(a==0 && b==0){while(get_rs485_ch_one_line_A()==0 && get_rs485_ch_one_line_B()==0){}}
-if(a==0 && b==1){update_raw_binary_list(0);update_raw_number_update_raw_char();while(get_rs485_ch_one_line_A()==0 && get_rs485_ch_one_line_B()==1){}}     
-if(a==1 && b==0){update_raw_binary_list(1);update_raw_number_update_raw_char();while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()==0){}}
+if(a==0 && b==1){update_raw_binary_list(0);get_numbers_and_characters_from_raw_binary();while(get_rs485_ch_one_line_A()==0 && get_rs485_ch_one_line_B()==1){}}     
+if(a==1 && b==0){update_raw_binary_list(1);get_numbers_and_characters_from_raw_binary();while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()==0){}}
 if(a==1 && b==1){while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()==1){}}
 }/*while*/
 return 0;
