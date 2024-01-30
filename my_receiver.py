@@ -56,7 +56,8 @@ def get_numbers_and_characters_from_raw_binary():
             #7 to 0
             character_number=character_number+((raw_bit[bit_position])*(2**exponent))
             bit_position=bit_position+1
-        raw_char[charindex] = integer_to_character(character_number)
+        raw_number[charindex] = character_number
+        raw_char  [charindex] = integer_to_character(character_number)
         bit_position=bit_position+1
 
 def add_new_bit_at_end_remove_old_bit_at_start(new_bit):
