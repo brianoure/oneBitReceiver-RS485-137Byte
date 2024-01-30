@@ -1,6 +1,6 @@
 #include <math.h>
 int  raw_binary_list[1096]; 
-int  raw_byte       [137 ];
+int  raw_number       [137 ];
 char raw_char       [137 ];
 
 int run_receiver_program(){
@@ -80,7 +80,8 @@ for (int exponent=7;exponent>=0;exponent--){/*7 to 0*/
 character_number=character_number+((raw_binary_list[bit_position])*pow(2,exponent));
 bit_position=bit_position+1;
 }/*for*/
-raw_char[charindex] = integer_to_character(character_number);
+raw_number[charindex] = character_number;
+raw_char  [charindex] = integer_to_character(character_number);
 bit_position=bit_position+1;
 }/*for*/
 
@@ -89,8 +90,8 @@ while(run_receiver_program()){
 int a=get_rs485_ch_one_line_A();
 int b=get_rs485_ch_one_line_B();
 if(a==0 && b==0){while(get_rs485_ch_one_line_A()==0 && get_rs485_ch_one_line_B()==0){}}
-if(a==0 && b==1){update_raw_binary_list(0);update_raw_byte_update_raw_char();while(get_rs485_ch_one_line_A()==0 && get_rs485_ch_one_line_B()==1){}}     
-if(a==1 && b==0){update_raw_binary_list(1);update_raw_byte_update_raw_char();while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()==0){}}
+if(a==0 && b==1){update_raw_binary_list(0);update_raw_number_update_raw_char();while(get_rs485_ch_one_line_A()==0 && get_rs485_ch_one_line_B()==1){}}     
+if(a==1 && b==0){update_raw_binary_list(1);update_raw_number_update_raw_char();while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()==0){}}
 if(a==1 && b==1){while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()==1){}}
 }/*while*/
 return 0;
