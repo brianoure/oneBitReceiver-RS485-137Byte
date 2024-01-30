@@ -1,5 +1,5 @@
 raw_number       = [0]*137#137 bytes
-raw_byte         = [0]*137#137 bytes
+raw_char         = [0]*137#137 bytes
 raw_bit          = 1096   #raw frame bits
 
 preamble_integer_list     =[0]*15
