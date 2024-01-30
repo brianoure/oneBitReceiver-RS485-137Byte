@@ -1,6 +1,3 @@
-"""MSB left and LSB right"""
-#preamble_string ="briansatelliteA"
-#postamble_string="briansatelliteB"
 raw_number       = [0]*137#137 bytes
 raw_byte         = [0]*137#137 bytes
 raw_bit          = 1096   #raw frame bits
@@ -63,8 +60,8 @@ def integer_to_character(integer):
 
 def get_numbers_and_characters_from_raw_binary():
     bit_position=0
-    for charindex in range(136,-1,-1):
-        #136 to 0
+    for charindex in range(137):
+        #0 to 136
         character_number=0
         for exponent in range(7,-1,-1):
             #7 to 0
