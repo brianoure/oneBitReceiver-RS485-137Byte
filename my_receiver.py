@@ -2,17 +2,6 @@ raw_number       = [0]*137#137 bytes
 raw_char         = [0]*137#137 bytes
 raw_bit          = 1096   #raw frame bits
 
-preamble_integer_list     =[0]*15
-id_integer_list           =[0]*15
-time_integer_list         =[0]*10
-computer_integer_list     =[0]*10
-power_integer_list        =[0]*20
-structure_integer_list    =[0]*16
-attitude_integer_list     =[0]*10
-payload_integer_list      =[0]*20
-communication_integer_list=[0]*6
-postamble_integer_list    =[0]*15
-
 def integer_to_character(integer):
     if(integer==0 ):return "a"
     if(integer==1 ):return "b"
