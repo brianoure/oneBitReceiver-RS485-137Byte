@@ -1,35 +1,27 @@
 #include <math.h>
-
 int  raw_binary_list[1096]; 
 int  raw_byte       [137 ];
 char raw_char       [137 ];
 
 int run_receiver_program(){
 result=true;/*external control for running the receiver program*/
-/***
-INSERT CODE HERE; IF THERE ARE CONDITIONS FOR RUNNING THE PROGRAM.
-If nothing is changed here, then the program should run indefinitely
-***/
+/*INSERT CODE HERE; IF THERE ARE CONDITIONS FOR RUNNING THE PROGRAM*/
 return result;
 }/*run_receiver_program*/
 
 int get_rs485_ch_one_line_A(){
 result=1;/***external control for retrieving bit value of channel one line A***/
-/***
-INSERT CODE HERE; FOR READING BIT VALUE OF SINGLE LINE (A).
-***/
+/*INSERT CODE HERE; FOR READING BIT VALUE OF SINGLE LINE (A)*/
 return result;
 }/*get_rs485_ch_one_line_A*/
 
 int get_rs485_ch_one_line_B(){
 result=1;/***external control for retrieving bit value of channel one line B***/
-/*
-INSERT CODE HERE; FOR READING BIT VALUE OF SINGLE LINE (B).
-*/
+/*INSERT CODE HERE; FOR READING BIT VALUE OF SINGLE LINE (B)*/
 return result;
 }/*get_rs485_ch_one_line_B*/:  
 
-char number_to_char(int myinteger){/*decrypt the raw numbers into actual characters*/
+char integer_to_character(int myinteger){/*decrypt the raw numbers into actual characters*/
 if(myinteger==0 ){return 'a';}
 if(myinteger==1 ){return 'b';}
 if(myinteger==2 ){return 'c';}
@@ -80,21 +72,17 @@ for(int index=0;index<=1094;index++){raw_binary_list[index]=raw_binary_list[inde
 raw_binary_list[1095]=recent_binary;
 }/*update_raw_binary_list*/
 
-void update_raw_byte_update_raw_char(){
-int frame_bits      =frame_characters*8;
-int max_bit_index   =frame_bits-1;
-int loop_number     =0;
-for(int framecharindex=0;framecharindex<=136;framecharindex++){
-int starting = max_bit_index-(8*loop_number);
-int ending = starting-7;
-int raw_number = 0;
-int target_raw_binary_index=starting;
-for(int mypower=7;mypower>=0;mypower--){ raw_number=raw_number+(raw_binary_list[target_raw_binary_index]*pow(2,mypower));target_raw_binary_index--; }/*for*/
-raw_number_list[framecharindex]=raw_number;
-raw_char       [framecharindex]=number_to_char(raw_number,framecharindex);
-loop_number++;
+void get_numbers_and_characters_from_raw_binary(){
+int bit_position=0;
+for (int charindex=0;charindex<=136;charindex++){/*0 to 136*/
+int character_number=0;
+for (int exponent=7;exponent>=0;exponent--){/*7 to 0*/
+character_number=character_number+((raw_binary_list[bit_position])*pow(2,exponent));
+bit_position=bit_position+1;
 }/*for*/
-}/*update_raw_byte_update_raw_char*/
+raw_char[charindex] = integer_to_character(character_number);
+bit_position=bit_position+1;
+}/*for*/
 
 int main(){
 while(run_receiver_program()){
@@ -107,3 +95,4 @@ if(a==1 && b==1){while(get_rs485_ch_one_line_A()==1 && get_rs485_ch_one_line_B()
 }/*while*/
 return 0;
 }/*main*/
+
