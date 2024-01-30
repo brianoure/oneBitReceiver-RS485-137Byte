@@ -1,19 +1,9 @@
 """MSB left and LSB right"""
-preamble_string ="briansatelliteA"
-postamble_string="briansatelliteB"
-raw_binary_list = [0]*1096 #137 bytes * 8 bit per byte
-raw_byte = [0]*137# 137 bytes
-
-preamble_binary_list     =[0]*120
-id_binary_list           =[0]*120
-time_binary_list         =[0]*80
-computer_binary_list     =[0]*80
-power_binary_list        =[0]*160
-structure_binary_list    =[0]*128
-attitude_binary_list     =[0]*80
-payload_binary_list      =[0]*160
-communication_binary_list=[0]*48
-postamble_binary_list    =[0]*120
+#preamble_string ="briansatelliteA"
+#postamble_string="briansatelliteB"
+raw_number       = [0]*137#137 bytes
+raw_byte         = [0]*137#137 bytes
+raw_bit          = 1096   #raw frame bits
 
 preamble_integer_list     =[0]*15
 id_integer_list           =[0]*15
@@ -70,111 +60,18 @@ def integer_to_character(integer):
     if(integer==40):return "+"
     if(integer==41):return "-"
     return "!"
-        
-def update_raw_binary_list(recent_binary):#void
-    for index in range(1095):
-        #0 to 1094
-        raw_binary_list[index]=raw_binary_list[index+1]
-    raw_binary_list[1095]=recent_binary#most recent bit input into raw_binary
-    
-def update_preamble_binary_list_from_raw_list():#void
-    for index in range(0,120):
-        #0 to 119
-        preamble_binary_list[index]=raw_binary_list[index]
 
-def update_id_binary_list_from_raw_list():#void
-    for index in range(120,240):
-        #120 to 239
-        id_binary_list[index]=raw_binary_list[index]
-
-def update_time_binary_list_from_raw_list():#void
-    for index in range(240,320):
-        #240 to 319
-        time_binary_list[index]=raw_binary_list[index]
-
-def update_computer_binary_list_from_raw_list():#void
-    for index in range(320,400):
-        #320 to 399
-        computer_binary_list[index]=raw_binary_list[index]
-
-def update_power_binary_list_from_raw_list():#void
-    for index in range(400,560):
-        #400 to 559
-        power_binary_list[index]=raw_binary_list[index]
-
-def update_structure_binary_list_from_raw_list():#void
-    for index in range(560,688):
-        #560 to 687
-        structure_binary_list[index]=raw_binary_list[index]
-
-def update_attitude_binary_list_from_raw_list():#void
-    for index in range(688,768):
-        #688 to 767
-        attitude_binary_list[index]=raw_binary_list[index]
-
-def update_payload_binary_list_from_raw_list():#void
-    for index in range(768,928):
-        #768 to 927
-        payload_binary_list[index]=raw_binary_list[index]
-
-def update_communication_binary_list_from_raw_list():#void
-    for index in range(928,976):
-        #928 to 975
-        communication_binary_list[index]= raw_binary_list[index]
-
-def update_postamble_binary_list_from_raw_list():#void
-    for index in range(976,1096):
-        #976 to 1095
-        postamble_binary_list[index]= raw_binary_list[index]
-
-def get_8_bit_values_from_list(mylist,mylistlength):
-    items=(int)(mylistlength/8)
-    start = 0
-    end = 7
-    integer_value_list=[0]*items
-    def integer_value(starting,ending):
-        result=0
-        for index in range(starting,ending+1):
-            result=result+ (mylist[index]*(2**(7-index+starting)))
-        return result
-    for value_index in range(items):
-        if value_index==0:
-            integer_value_list[value_index]=integer_value(start,end)
-        if not(value_index==0):
-            start=start+8
-            end=end+8
-            integer_value_list[value_index]=integer_value(start,end)
-    return( integer_value_list )
-
-def decrypt(mylist,mylistsize):
-    decrypt_result="!"*mylistsize
-    for index in range(mylistsize):
-        decrypt_result[index]=integer_to_character(mylist[index])
-    return decrypt_result
-
-def update_binary_frame_sections():
-    update_preamble_binary_list_from_raw_list     ()
-    update_id_binary_list_from_raw_list           ()
-    update_time_binary_list_from_raw_list         ()
-    update_computer_binary_list_from_raw_list     ()
-    update_power_binary_list_from_raw_list        ()
-    update_structure_binary_list_from_raw_list    ()
-    update_attitude_binary_list_from_raw_list     ()
-    update_payload_binary_list_from_raw_list      ()
-    update_communication_binary_list_from_raw_list()
-    update_postamble_binary_list_from_raw_list    ()
-
-def get_section_messages_from_binary_lists():
-    decrypt(get_8_bit_values_from_list(preamble_binary_list     ,120),15)
-    decrypt(get_8_bit_values_from_list(id_binary_list           ,120),15)
-    decrypt(get_8_bit_values_from_list(time_binary_list         ,80 ),10)
-    decrypt(get_8_bit_values_from_list(computer_binary_list     ,80 ),10)
-    decrypt(get_8_bit_values_from_list(power_binary_list        ,160),20)
-    decrypt(get_8_bit_values_from_list(structure_binary_list    ,128),16)
-    decrypt(get_8_bit_values_from_list(attitude_binary_list     ,80 ),10)
-    decrypt(get_8_bit_values_from_list(payload_binary_list      ,160),20)
-    decrypt(get_8_bit_values_from_list(communication_binary_list,48 ),6 )
-    decrypt(get_8_bit_values_from_list(postamble_binary_list    ,120),15)
+def get_numbers_from_raw_binary():
+    bit_position=1095
+    for charindex in range(136,-1,-1):
+        #136 to 0
+        character_number=0
+        for exponent in range(7,-1,-1):
+            #7 to 0
+            character_number=character_number+((raw_bit[bit_position])*(2**exponent))
+            bit_position=bit_position-1
+        raw_char[charindex] = integer_to_character(character_number)
+        bit_position=bit_position-1
 
 def run_receiver_program():
     result=True#external control for running the receiver program
@@ -192,22 +89,15 @@ def receiver_main():
     while run_receiver_program():
         a=get_rs485_ch_one_line_A()
         b=get_rs485_ch_one_line_B()
-        #print(a,b)
         if(a==0 and b==0):
-            #print("first")
-            #update_raw_binary_list(recent_binary)
             while(get_rs485_ch_one_line_A()==0 and get_rs485_ch_one_line_B()==0):pass
         if(a==0 and b==1):
-            #print("second")
             update_raw_binary_list(0)
             update_binary_frame_sections()
             while(get_rs485_ch_one_line_A()==0 and get_rs485_ch_one_line_B()==1):pass
         if(a==1 and b==0):
-            #print("third")
             update_raw_binary_list(1)
             update_binary_frame_sections()
             while(get_rs485_ch_one_line_A()==1 and get_rs485_ch_one_line_B()==0):pass
         if(a==1 and b==1):
-            #print("fourth")
-            #update_raw_binary_list(recent_binary)
             while(get_rs485_ch_one_line_A()==1 and get_rs485_ch_one_line_B()==1):pass
