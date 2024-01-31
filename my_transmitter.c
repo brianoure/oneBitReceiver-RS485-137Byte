@@ -1,3 +1,4 @@
+#include <math.h>
 char raw_char  [137 ];
 int  raw_int   [137 ];
 int  raw_binary[1096];
@@ -54,7 +55,7 @@ raw_binary_index_marker=0
 for (int  raw_char_index=0;raw_char_index<=136;raw_char_index++){/*for*/
 raw_int[raw_char_index] = my_encode(raw_char[raw_char_index])
 for (int position=0;position<=7;position++){/*for*/
-raw_binary[raw_binary_index_marker+position]=(int)(raw_int[raw_char_index] & (2**(7-position)));
+raw_binary[raw_binary_index_marker+position]=(int)(raw_int[raw_char_index] & pow(2,(7-position)));
 }/*for*/
 raw_binary_index_marker=raw_binary_index_marker+1;
 }/*for*/
@@ -87,9 +88,9 @@ construct_binary_frame();
 for(int binary_index=0;binary_index<=1095;binary_index++){/*for*/
 actual_bit = raw_binary[binary_index];
 transmitter_set(actual_bit, not(actual_bit));
-for (int pause=0;pause<=10000; in range(10000)){}/*for*/
+for (int pause=0;pause<=10000;pause++){}/*for*/
 transmitter_set(1,1); 
-for (int pause=0;pause<=10000; in range(10000)){}/*for*/
+for (int pause=0;pause<=10000;pause++){}/*for*/
 }/*for*/      
 }/*while*/
 return 0;
