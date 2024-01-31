@@ -4,50 +4,49 @@ int  raw_int   [137 ];
 int  raw_binary[1096];
 
 int my_encode(mychar){/*my_encode*/
-if(mychar=='a'){return 1; }
-if(mychar=='b'){return 2; }
-if(mychar=='c'){return 3; }
-if(mychar=='d'){return 4; }
-if(mychar=='e'){return 5; }
-if(mychar=='f'){return 6; }
-if(mychar=='g'){return 7; }
-if(mychar=='h'){return 8; }
-if(mychar=='i'){return 9; }
-if(mychar=='j'){return 10;}
-if(mychar=='k'){return 11;}
-if(mychar=='l'){return 12;}
-if(mychar=='m'){return 13;}
-if(mychar=='n'){return 14;}
-if(mychar=='o'){return 15;}
-if(mychar=='p'){return 16;}
-if(mychar=='q'){return 17;}
-if(mychar=='r'){return 18;}
-if(mychar=='s'){return 19;}
-if(mychar=='t'){return 20;}
-if(mychar=='u'){return 21;}
-if(mychar=='v'){return 22;}
-if(mychar=='w'){return 23;}
-if(mychar=='x'){return 24;}
-if(mychar=='y'){return 25;}
-if(mychar=='z'){return 26;}
-if(mychar=='0'){return 27;}
-if(mychar=='1'){return 28;}
-if(mychar=='2'){return 29;}
-if(mychar=='3'){return 30;}
-if(mychar=='4'){return 31;}
-if(mychar=='5'){return 32;}
-if(mychar=='6'){return 33;}
-if(mychar=='7'){return 34;}
-if(mychar=='8'){return 35;}
-if(mychar=='9'){return 36;}
-if(mychar=='s'){return 37;}
-if(mychar=='t'){return 38;}
-if(mychar=='t'){return 39;}
-if(mychar=='t'){return 40;}
-if(mychar=='t'){return 41;}
-if(mychar=='t'){return 42;}
-if(mychar=='t'){return 43;}
-return 58;
+if(myinteger=='a'){return  0;}
+if(myinteger=='b'){return  1;}
+if(myinteger=='c'){return  2;}
+if(myinteger=='d'){return  3;}
+if(myinteger=='e'){return  4;}
+if(myinteger=='f'){return  5;}
+if(myinteger=='g'){return  6;}
+if(myinteger=='h'){return  7;}
+if(myinteger=='i'){return  8;}
+if(myinteger=='j'){return  9;}
+if(myinteger=='k'){return 10;}
+if(myinteger=='l'){return 11;}
+if(myinteger=='m'){return 12;}
+if(myinteger=='n'){return 13;}
+if(myinteger=='o'){return 14;}
+if(myinteger=='p'){return 15;}
+if(myinteger=='q'){return 16;}
+if(myinteger=='r'){return 17;}
+if(myinteger=='s'){return 18;}
+if(myinteger=='t'){return 19;}
+if(myinteger=='u'){return 20;}
+if(myinteger=='v'){return 21;}
+if(myinteger=='w'){return 22;}
+if(myinteger=='x'){return 23;}
+if(myinteger=='y'){return 24;}
+if(myinteger=='z'){return 25;}
+if(myinteger=='0'){return 26;}
+if(myinteger=='1'){return 27;}
+if(myinteger=='2'){return 28;}
+if(myinteger=='3'){return 29;}
+if(myinteger=='4'){return 30;}
+if(myinteger=='5'){return 31;}
+if(myinteger=='6'){return 32;}
+if(myinteger=='7'){return 33;}
+if(myinteger=='8'){return 34;}
+if(myinteger=='9'){return 35;}
+if(myinteger=='.'){return 36;}
+if(myinteger=='%'){return 37;}
+if(myinteger==';'){return 38;}
+if(myinteger=='#'){return 39;}
+if(myinteger=='+'){return 40;}
+if(myinteger=='-'){return 41;}
+return 42;
 }/*my_encode*/
   
 int construct_binary_frame(){/*construct_binary_frame*/
@@ -79,7 +78,7 @@ return 0;
 int update_raw_char(){
 /*external means of acquiring the binary frame and introducing it to this program*/
 return 0;
-}/*ME*/
+}/*update_raw_char*/
   
 int main(){
 while (run_transmitter()){
