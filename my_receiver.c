@@ -5,19 +5,19 @@ char raw_char       [137 ];
 
 int run_receiver_program(){
 result=true;/*external control for running the receiver program*/
-/*INSERT CODE HERE; IF THERE ARE CONDITIONS FOR RUNNING THE PROGRAM*/
+/*INSERT CODE HERE;CONDITIONS FOR RUNNING THE PROGRAM*/
 return result;
 }/*run_receiver_program*/
 
 int get_rs485_ch_one_line_A(){
 result=1;/***external control for retrieving bit value of channel one line A***/
-/*INSERT CODE HERE; FOR READING BIT VALUE OF SINGLE LINE (A)*/
+/*INSERT CODE HERE; BIT VALUE OF SINGLE LINE (A)*/
 return result;
 }/*get_rs485_ch_one_line_A*/
 
 int get_rs485_ch_one_line_B(){
 result=1;/***external control for retrieving bit value of channel one line B***/
-/*INSERT CODE HERE; FOR READING BIT VALUE OF SINGLE LINE (B)*/
+/*INSERT CODE HERE; BIT VALUE OF SINGLE LINE (B)*/
 return result;
 }/*get_rs485_ch_one_line_B*/:  
 
